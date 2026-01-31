@@ -233,30 +233,61 @@ async function loadNews() {
         }
 
         newsGrid.innerHTML = newsItems.map(item => {
-            let summary = [];
+            // Parse AI analysis
+            let aiData = {
+                title: item.title || 'News Update',
+                summary: item.summary_text || '',
+                categories: [],
+                importance_score: item.importance_score || 5
+            };
+
             try {
-                summary = JSON.parse(item.summary_text);
+                // Handle old format (array summary) or new format
+                const parsed = JSON.parse(item.summary_text);
+                if (Array.isArray(parsed)) {
+                    // Old format: array of bullet points
+                    aiData.summary = parsed.join(' ');
+                } else if (typeof parsed === 'string') {
+                    aiData.summary = parsed;
+                }
             } catch (e) {
-                summary = [item.summary_text];
+                // If not JSON, use as-is
+                aiData.summary = item.summary_text;
+            }
+
+            // Parse categories
+            if (item.category) {
+                try {
+                    aiData.categories = JSON.parse(item.category);
+                } catch (e) {
+                    aiData.categories = [item.category];
+                }
             }
 
             const date = new Date(item.published_at);
             const timeAgoStr = getTimeAgo(date);
 
+            // Importance indicator color
+            const importanceColor = aiData.importance_score >= 8 ? '#ef4444' :
+                aiData.importance_score >= 6 ? '#f59e0b' :
+                    '#10b981';
+
             return `
                 <div class="news-card">
                     <div class="news-header">
-                        <div style="display: flex; gap: 8px; align-items: center;">
+                        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
                             <span class="news-source">@${item.username}</span>
-                            ${item.category ? `<span class="category-badge" style="background: rgba(99, 102, 241, 0.1); color: #818cf8; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">${item.category}</span>` : ''}
+                            ${aiData.categories.map(cat =>
+                `<span class="category-badge" style="background: rgba(99, 102, 241, 0.1); color: #818cf8; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem;">${cat}</span>`
+            ).join('')}
+                            ${aiData.importance_score >= 7 ?
+                    `<span style="background: ${importanceColor}22; color: ${importanceColor}; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">${aiData.importance_score}/10</span>`
+                    : ''}
                         </div>
                         <span class="news-time">${timeAgoStr}</span>
                     </div>
-                    <div class="news-summary">
-                        <ul>
-                            ${summary.map(s => `<li>${s}</li>`).join('')}
-                        </ul>
-                    </div>
+                    <h3 style="font-size: 1.1rem; margin: 12px 0 8px 0; color: var(--text-primary); font-weight: 600;">${aiData.title}</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.6; margin: 0;">${aiData.summary}</p>
                 </div>
             `;
         }).join('');

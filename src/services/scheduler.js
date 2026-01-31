@@ -68,20 +68,24 @@ async function scrapeAndProcess(source) {
 
             const insertSql = `
         INSERT INTO news_items 
-        (source_id, external_id, original_text, is_news_worthy, summary_text, category, relevance_score, published_at)
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+        (source_id, external_id, original_text, is_news_worthy, title, summary_text, category, importance_score, sentiment, relevance_score, published_at)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
         RETURNING id;
       `;
 
-            const summaryStr = JSON.stringify(analysis.summary); // Array -> Text/JSON dönüşümü
+            // Format categories array as JSON string
+            const categoriesStr = JSON.stringify(analysis.categories || ['General']);
 
             const newsItem = await query(insertSql, [
                 source.id,
                 post.id,
                 post.content,
                 analysis.is_news_worthy,
-                summaryStr,
-                analysis.category,
+                analysis.title || 'News Update',
+                analysis.summary || '', // Now string instead of array
+                categoriesStr, // Store as JSON array
+                analysis.importance_score || 5,
+                analysis.sentiment || 'Neutral',
                 0, // Score şimdilik 0
                 post.timestamp
             ]);

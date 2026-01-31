@@ -1,19 +1,19 @@
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
-// Initialize Gemini
+// Initialize Gemini with stable model
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
-const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-lite" });
+const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
-// Rate limit tracking
+// Rate limit tracking - increased for stability
 let lastRequestTime = 0;
-const MIN_REQUEST_INTERVAL = 2000; // 2 seconds between requests
+const MIN_REQUEST_INTERVAL = 5000; // 5 seconds between requests (increased from 2s)
 let consecutiveErrors = 0;
 const MAX_RETRIES = 3;
 
 async function analyzeContent(username, content) {
     // Check for API key
     if (!process.env.GEMINI_API_KEY) {
-        console.warn('UYARI: GEMINI_API_KEY eksik. Mock yanıt dönülüyor.');
+        console.warn('⚠️ GEMINI_API_KEY missing. Returning mock response.');
         return getMockResponse();
     }
 
@@ -25,22 +25,38 @@ async function analyzeContent(username, content) {
     }
     lastRequestTime = Date.now();
 
-    const prompt = `
-Sen uzman bir haber editörü ve filtreleme asistanısın. Görevin, sosyal medya paylaşımlarını analiz edip "gürültüden" arındırmak ve sadece haber değeri taşıyan somut bilgileri özetlemektir.
+    const prompt = `You are an expert AI news analyst. Analyze this tweet and determine if it's newsworthy.
+
+CRITERIA FOR NEWS VALUE:
+✅ Product launches, company announcements
+✅ Major funding, acquisitions, partnerships  
+✅ Technical breakthroughs or innovations
+✅ Policy changes, regulations
+✅ Market-moving data or research
+✅ Significant events or incidents
+
+❌ Personal opinions without facts
+❌ Jokes, memes, casual conversation
+❌ Self-promotion without substance
 
 TWEET:
 @${username}: "${content}"
 
-Bu paylaşımı analiz et ve aşağıdaki JSON formatında yanıt ver:
-
+RESPOND IN JSON:
 {
   "is_news_worthy": true/false,
-  "reason": "Kısa açıklama",
-  "summary": ["Madde 1", "Madde 2", "Madde 3"],
-  "category": "Kategori",
-  "sentiment": "Pozitif" | "Nötr" | "Negatif"
+  "importance_score": 1-10,
+  "title": "Short engaging headline (max 10 words)",
+  "summary": "1-2 sentence summary of key facts",
+  "categories": ["Tech", "Finance", "Politics", "Science", "General"],
+  "sentiment": "Positive" | "Neutral" | "Negative"
 }
-`;
+
+EXAMPLES:
+✅ "Apple announces iPhone 16 with AI chip" → importance: 9
+❌ "Good morning everyone!" → importance: 0
+✅ "Fed cuts interest rates by 0.5%" → importance: 10
+❌ "Just my thoughts on crypto..." → importance: 2`;
 
     // Retry loop with exponential backoff
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
@@ -95,14 +111,11 @@ Bu paylaşımı analiz et ve aşağıdaki JSON formatında yanıt ver:
 function getMockResponse() {
     return {
         is_news_worthy: true,
-        reason: "Beta mode: AI analizi geçici olarak mock veri kullanıyor.",
-        summary: [
-            "Bu içerik beta demo modunda analiz edildi.",
-            "Gerçek AI analizi rate limit sonrası devam edecek.",
-            "Sistem normal şekilde çalışmaya devam ediyor."
-        ],
-        category: "Genel",
-        sentiment: "Nötr"
+        importance_score: 5,
+        title: "Beta Mode: Using Mock Data",
+        summary: "This content is being analyzed in beta demo mode. Real AI analysis will resume after rate limit recovery.",
+        categories: ["General"],
+        sentiment: "Neutral"
     };
 }
 
