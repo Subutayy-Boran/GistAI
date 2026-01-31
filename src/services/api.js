@@ -395,6 +395,37 @@ async function getNews(req, res) {
     }
 }
 
+/**
+ * DELETE /api/user/delete-account
+ * Permanently delete user account and all associated data
+ */
+async function deleteAccount(req, res) {
+    try {
+        const userId = req.user.id;
+
+        // Delete user subscriptions
+        await query('DELETE FROM subscriptions WHERE user_id = $1', [userId]);
+
+        // Delete telegram connection code if exists
+        await query('DELETE FROM telegram_pending WHERE user_id = $1', [userId]);
+
+        // Delete user account
+        await query('DELETE FROM users WHERE id = $1', [userId]);
+
+        // Invalidate session
+        const token = req.headers.authorization?.replace('Bearer ', '');
+        if (token) {
+            sessions.delete(token);
+        }
+
+        res.json({ success: true, message: 'Account deleted successfully' });
+
+    } catch (err) {
+        console.error('Delete account error:', err);
+        res.status(500).json({ error: 'Failed to delete account' });
+    }
+}
+
 module.exports = {
     requireAuth,
     register,
@@ -407,5 +438,6 @@ module.exports = {
     removeSubscription,
     getNews,
     forgotPassword,
+    deleteAccount,
     createSession
 };

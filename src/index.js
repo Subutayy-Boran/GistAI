@@ -52,6 +52,8 @@ app.get('/api/subscriptions', api.requireAuth, api.getSubscriptions);
 app.post('/api/subscriptions', api.requireAuth, api.addSubscription);
 app.delete('/api/subscriptions/:sourceId', api.requireAuth, api.removeSubscription);
 app.get('/api/news', api.requireAuth, api.getNews);
+app.delete('/api/user/delete-account', api.requireAuth, api.deleteAccount);
+
 
 // ============================================
 // WEB ROUTES (Server-side rendered pages)

@@ -554,6 +554,82 @@ function getTimeAgo(date) {
     return t('dashboard.timeAgo.justNow');
 }
 
+
+// Settings Functions
+function handleLogout() {
+    logout();
+}
+
+function showDeleteAccountModal() {
+    document.getElementById('deleteAccountModal').style.display = 'flex';
+    document.getElementById('deleteConfirmInput').value = '';
+}
+
+function hideDeleteAccountModal() {
+    document.getElementById('deleteAccountModal').style.display = 'none';
+    document.getElementById('deleteConfirmInput').value = '';
+}
+
+async function confirmDeleteAccount() {
+    const input = document.getElementById('deleteConfirmInput').value;
+
+    if (input !== 'DELETE') {
+        alert(t('dashboard.typeDELETE') || 'Please type DELETE to confirm');
+        return;
+    }
+
+    try {
+        const res = await fetch('/api/user/delete-account', {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${authToken}`,
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (res.ok) {
+            alert(t('dashboard.deleteSuccess') || 'Account deleted successfully');
+            localStorage.removeItem('authToken');
+            localStorage.removeItem('user');
+            window.location.href = '/';
+        } else {
+            const data = await res.json();
+            alert(t('dashboard.deleteFailed') || `Error: ${data.error || 'Failed to delete account'}`);
+        }
+    } catch (error) {
+        console.error('Delete account error:', error);
+        alert(t('dashboard.deleteError') || 'An error occurred. Please try again.');
+    }
+}
+
+async function loadAccountInfo() {
+    try {
+        const res = await fetch('/api/user/profile', {
+            headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            const email = data.user.email || data.user.telegram_username || 'N/A';
+            const created = data.user.created_at ? new Date(data.user.created_at).toLocaleDateString() : 'Unknown';
+
+            // Update settings email
+            const settingsEmailEl = document.getElementById('settingsEmail');
+            if (settingsEmailEl) {
+                settingsEmailEl.textContent = email;
+            }
+
+            //Update account created date
+            const createdDateEl = document.getElementById('accountCreatedDate');
+            if (createdDateEl) {
+                createdDateEl.textContent = created;
+            }
+        }
+    } catch (error) {
+        console.error('Load account info error:', error);
+    }
+}
+
 // Expose functions to window
 window.showAddModal = showAddModal;
 window.hideAddModal = hideAddModal;
@@ -563,6 +639,10 @@ window.generateTelegramCode = generateTelegramCode;
 window.loadNews = loadNews;
 window.showTab = showTab;
 window.logout = logout;
+window.handleLogout = handleLogout;
+window.showDeleteAccountModal = showDeleteAccountModal;
+window.hideDeleteAccountModal = hideDeleteAccountModal;
+window.confirmDeleteAccount = confirmDeleteAccount;
 
 // Initialize on Load
 document.addEventListener('DOMContentLoaded', () => {
@@ -572,4 +652,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // We can just call load functions.
     loadStats();
     loadNews();
+    loadAccountInfo(); // Load account info for settings tab
 });
