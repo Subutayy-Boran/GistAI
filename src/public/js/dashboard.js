@@ -521,11 +521,23 @@ if (addSubForm) {
     });
 }
 
-// Remove Subscription
-async function removeSubscription(sourceId) {
-    if (!confirm(t('dashboard.confirmRemove'))) return;
+// Remove Subscription with Modal
+let pendingRemoveSourceId = null;
 
-    const response = await fetch(`/api/subscriptions/${sourceId}`, {
+function removeSubscription(sourceId) {
+    pendingRemoveSourceId = sourceId;
+    document.getElementById('removeSubscriptionModal').style.display = 'flex';
+}
+
+function hideRemoveSubscriptionModal() {
+    document.getElementById('removeSubscriptionModal').style.display = 'none';
+    pendingRemoveSourceId = null;
+}
+
+async function confirmRemoveSubscription() {
+    if (!pendingRemoveSourceId) return;
+
+    const response = await fetch(`/api/subscriptions/${pendingRemoveSourceId}`, {
         method: 'DELETE',
         headers: {
             'Authorization': `Bearer ${authToken}`
@@ -533,8 +545,11 @@ async function removeSubscription(sourceId) {
     });
 
     if (response.ok) {
+        hideRemoveSubscriptionModal();
         loadStats();
         loadSubscriptions();
+    } else {
+        alert('Failed to remove subscription. Please try again.');
     }
 }
 
@@ -666,6 +681,8 @@ window.showAddModal = showAddModal;
 window.hideAddModal = hideAddModal;
 window.hidePremiumModal = hidePremiumModal;
 window.removeSubscription = removeSubscription;
+window.hideRemoveSubscriptionModal = hideRemoveSubscriptionModal;
+window.confirmRemoveSubscription = confirmRemoveSubscription;
 window.generateTelegramCode = generateTelegramCode;
 window.loadNews = loadNews;
 window.showTab = showTab;
