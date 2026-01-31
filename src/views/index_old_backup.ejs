@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GistAI - AI-Powered Twitter Takip Platformu</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Background Canvas -->
+    <canvas id="bg-canvas"
+        style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: var(--bg-primary);"></canvas>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-content">
+            <a href="/" class="logo">🤖 GistAI</a>
+            <ul class="nav-links">
+                <li><a href="#features">Özellikler</a></li>
+                <li><a href="#pricing">Fiyatlandırma</a></li>
+                <li><a href="#how-it-works">Nasıl Çalışır</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+            <div style="display: flex; gap: 1rem;">
+                <a href="/login" class="btn btn-secondary">Giriş Yap</a>
+                <a href="/register" class="btn btn-primary">Ücretsiz Başla</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div
+                    style="display: inline-block; background: rgba(236, 68, 153, 0.1); border: 1px solid var(--accent); padding: 0.5rem 1rem; border-radius: 20px; margin-bottom: 1rem;">
+                    <span style="color: var(--accent); font-weight: 600;">🧪 BETA - Early Access</span>
+                </div>
+                <h1>Twitter'dan Sadece<br>Önemli Haberleri Al</h1>
+                <p>
+                    AI destekli filtreleme ile takip ettiğiniz hesaplardan sadece haber değeri taşıyan
+                    içerikleri özetleyip Telegram'dan size iletiyoruz. Gürültüden arındırılmış bilgi.
+                </p>
+                <div class="hero-buttons">
+                    <a href="/register" class="btn btn-primary btn-large">🚀 Hemen Başla - Ücretsiz</a>
+                    <a href="#how-it-works" class="btn btn-secondary btn-large">📖 Nasıl Çalışır?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="text-center">Neden GistAI?</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 3rem;">
+                Twitter'daki bilgi kirliliğinden kurtulun. AI sadece gerçekten önemli haberleri filtreler.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered Filtreleme</h3>
+                    <p>Google Gemini ile her tweet analiz edilir. Sadece haber değeri taşıyan içerikler size ulaşır.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Anlık Bildirimler</h3>
+                    <p>Önemli haberler 15 dakika içinde Telegram'dan size ulaşır. Hiçbir şeyi kaçırmayın.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Akıllı Özetler</h3>
+                    <p>Uzun tweetler 3 maddede özetlenir. Zamandan tasarruf edin.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Özelleştirilebilir</h3>
+                    <p>Takip etmek istediğiniz hesapları seçin, bildirim tercihlerinizi yönetin.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Ücretsiz API Yok</h3>
+                    <p>Twitter API maliyeti yok! Nitter kullanarak %100 ücretsiz scraping.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Gizlilik Odaklı</h3>
+                    <p>Verileriniz güvende. Sadece siz ve botunuz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how-it-works" style="background: var(--bg-card);">
+        <div class="container">
+            <h2 class="text-center">Nasıl Çalışır?</h2>
+            <div class="features-grid" style="margin-top: 3rem;">
+                <div class="feature-card">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem;">1</div>
+                    <h3>Kayıt Ol</h3>
+                    <p>Email ile ücretsiz hesap oluştur. Kredi kartı gerekmez.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem;">2</div>
+                    <h3>Twitter Hesaplarını Ekle</h3>
+                    <p>Takip etmek istediğin Twitter hesaplarını dashboard'dan ekle (Free: 2, Premium: Sınırsız).</p>
+                </div>
+
+                <div class="feature-card">
+                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary); margin-bottom: 1rem;">3</div>
+                    <h3>Telegram'ı Bağla</h3>
+                    <p>Telegram botunu başlat ve web'den aldığın kodu gir. Hepsi bu!</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="/register" class="btn btn-primary btn-large">Şimdi Başla →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section" id="pricing">
+        <div class="container">
+            <h2 class="text-center">Basit ve Şeffaf Fiyatlandırma</h2>
+            <p class="text-center" style="max-width: 700px; margin: 0 auto 3rem;">
+                Küçük başla, büyüdükçe yükselt. Her zaman iptal edebilirsin.
+            </p>
+
+            <div class="pricing-grid">
+                <!-- Free Plan -->
+                <div class="pricing-card">
+                    <h3>Free</h3>
+                    <div class="pricing-price">
+                        ₺0
+                        <span>/ay</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>2 Twitter hesabı takibi</li>
+                        <li>AI-powered filtreleme</li>
+                        <li>Telegram bildirimleri</li>
+                        <li>Web dashboard erişimi</li>
+                        <li>Temel özetler</li>
+                    </ul>
+                    <a href="/register" class="btn btn-secondary" style="width: 100%;">Ücretsiz Başla</a>
+                </div>
+
+                <!-- Premium Plan -->
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">🔥 En Popüler</div>
+                    <h3>Premium</h3>
+                    <div class="pricing-price">
+                        $19
+                        <span>/ay</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Sınırsız Twitter takibi</li>
+                        <li>Gelişmiş AI analizi</li>
+                        <li>Kategori filtreleme</li>
+                        <li>Öncelikli bildirimler</li>
+                        <li>Detaylı haber arşivi</li>
+                        <li>Premium destek</li>
+                    </ul>
+                    <a href="/register" class="btn btn-primary" style="width: 100%;">Premium'a Geç</a>
+                </div>
+            </div>
+
+            <p class="text-center mt-4" style="color: var(--text-secondary);">
+                💳 Kredi kartı bilgisi gerekmez. İstediğin zaman iptal et.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section" style="background: var(--bg-card);">
+        <div class="container">
+            <h2 class="text-center">Sıkça Sorulan Sorular</h2>
+            <div style="max-width: 800px; margin: 3rem auto;">
+
+                <div class="feature-card" style="margin-bottom: 1.5rem;">
+                    <h3>🧪 Beta sürümü ne anlama geliyor?</h3>
+                    <p>GistAI henüz erken erişim aşamasında. Sistemin çalıştığını kanıtlamak ve kullanıcı feedbacki
+                        toplamak için gerçekçi demo verilerle çalışıyoruz. İlk 50 kullanıcıya ulaştığımızda gerçek
+                        Twitter API entegrasyonunu yapacağız.</p>
+                </div>
+
+                <div class="feature-card" style="margin-bottom: 1.5rem;">
+                    <h3>💰 Ödeme sistemini nasıl kullanırım?</h3>
+                    <p>Premium planı Gumroad üzerinden satın alabilirsiniz. Gumroad güvenli ödeme işlemi için Stripe ve
+                        PayPal ile entegre çalışır. İstediğiniz zaman aboneliğinizi iptal edebilirsiniz.</p>
+                </div>
+
+                <div class="feature-card" style="margin-bottom: 1.5rem;">
+                    <h3>📊 Veriler gerçek mi?</h3>
+                    <p>Şu anda (beta aşaması) gerçekçi demo haberler kullanıyoruz. Bu sayede sistem end-to-end test
+                        edilir ve AI filtreleme algoritmasını optimize ediyoruz. Gerçek tweet entegrasyonu ilk 50
+                        kullanıcıdan sonra devreye girecek.</p>
+                </div>
+
+                <div class="feature-card" style="margin-bottom: 1.5rem;">
+                    <h3>🔄 Free tier'dan Premium'a geçebilir miyim?</h3>
+                    <p>Evet! İstediğiniz zaman Dashboard > Profil sekmesinden Premium'a yükseltme yapabilirsiniz. Mevcut
+                        takipleriniz korunur ve hemen sınırsız hesap takibi aktif olur.</p>
+                </div>
+
+                <div class="feature-card" style="margin-bottom: 1.5rem;">
+                    <h3>🚀 Roadmap nedir?</h3>
+                    <p>
+                        <strong>Şimdi (Beta):</strong> Demo data ile sistem testi<br>
+                        <strong>50 kullanıcı:</strong> Gerçek Twitter API entegrasyonu<br>
+                        <strong>500 kullanıcı:</strong> Kategori filtreleme, email notifications<br>
+                        <strong>1000+ kullanıcı:</strong> Mobile app, team plans, enterprise features
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>❓ Başka sorularım var</h3>
+                    <p>Telegram botumuz üzerinden (@GistAI_bot) veya email ile bizimle iletişime geçebilirsiniz. Beta
+                        kullanıcılarına öncelikli destek sağlıyoruz!</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--gradient-primary); padding: 4rem 0;">
+        <div class="container text-center">
+            <h2 style="color: white; margin-bottom: 1rem;">Haber Kirliliğinden Kurtul</h2>
+            <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 2rem;">
+                Dakikalar içinde kurulum yapıp ilk haberlerini almaya başla.
+            </p>
+            <a href="/register" class="btn btn-large" style="background: white; color: var(--primary);">
+                🚀 Ücretsiz Hesap Oluştur
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--bg-card); padding: 3rem 0; text-align: center; color: var(--text-secondary);">
+        <div class="container">
+            <div class="logo" style="margin-bottom: 1rem;">🤖 GistAI</div>
+            <p>AI destekli Twitter haber takip platformu.</p>
+            <p style="margin-top: 2rem; font-size: 0.875rem;">
+                © 2026 GistAI. Tüm hakları saklıdır.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Background Animation -->
+    <script src="/js/bg-animation.js"></script>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

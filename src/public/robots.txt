@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://gistai.net/sitemap.xml
+
+# Disallow sensitive paths
+Disallow: /api/
+Disallow: /auth/
+Disallow: /.env
+
+# Crawl-delay
+Crawl-delay: 1

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GistAI - AI-Powered Twitter News Filter</title>
+    <meta name="description"
+        content="Get only important news from Twitter with AI-powered filtering. Save time, stay informed with smart Telegram notifications.">
+    <meta name="keywords"
+        content="Twitter filter, AI news, Telegram notifications, news summary, social media filter, Twitter AI, smart news feed, news aggregator">
+    <meta name="author" content="GistAI">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="canonical" href="https://gistai.net/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://gistai.net/">
+    <meta property="og:title" content="GistAI - Twitter News Without the Noise">
+    <meta property="og:description"
+        content="AI-powered filtering for your Twitter feed. Get only the news that matters via Telegram.">
+    <meta property="og:image" content="https://gistai.net/images/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://gistai.net/">
+    <meta property="twitter:title" content="GistAI - Twitter News Without the Noise">
+    <meta property="twitter:description"
+        content="AI-powered filtering for your Twitter feed. Get only important news via Telegram notifications.">
+    <meta property="twitter:image" content="https://gistai.net/images/og-image.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/landing.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="/" class="logo">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" class="logo-icon" stroke="currentColor"
+                    stroke-width="2">
+                    <path
+                        d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7V5.73C9.4 5.39 9 4.74 9 4a2 2 0 0 1 2-2z" />
+                    <path d="M8 11h.01" />
+                    <path d="M16 11h.01" />
+                    <path d="M9 16c.5 1 2 1 2.5 1s2-1 2.5-1" />
+                </svg>
+                GistAI
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="nav-links">
+                <a href="#features" class="nav-link" data-i18n="nav.features">Features</a>
+                <a href="#how-it-works" class="nav-link" data-i18n="nav.howItWorks">How it Works</a>
+                <a href="#pricing" class="nav-link" data-i18n="nav.pricing">Pricing</a>
+                <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
+            </div>
+
+            <div class="nav-actions">
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <button class="lang-btn" id="lang-toggle" aria-label="Select Language">
+                        <span id="current-lang-flag">🇬🇧</span>
+                        <span>EN</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor">
+                            <path d="M3 4.5L6 7.5L9 4.5" stroke-width="1.5" />
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown" id="lang-dropdown">
+                        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+                        <div class="lang-option" data-lang="tr">🇹🇷 Türkçe</div>
+                        <div class="lang-option" data-lang="es">🇪🇸 Español</div>
+                        <div class="lang-option" data-lang="de">🇩🇪 Deutsch</div>
+                        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+                    </div>
+                </div>
+
+                <div class="desktop-auth">
+                    <a href="/login" class="btn btn-sm btn-outline" data-i18n="nav.login">Login</a>
+                    <a href="/register" class="btn btn-sm btn-primary" data-i18n="nav.start">Get Started</a>
+                </div>
+
+                <!-- Mobile Menu Details -->
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 12h18" />
+                        <path d="M3 6h18" />
+                        <path d="M3 18h18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown -->
+        <div class="mobile-menu">
+            <a href="#features" class="mobile-link" data-i18n="nav.features">Features</a>
+            <a href="#how-it-works" class="mobile-link" data-i18n="nav.howItWorks">How it Works</a>
+            <a href="#pricing" class="mobile-link" data-i18n="nav.pricing">Pricing</a>
+            <a href="#faq" class="mobile-link" data-i18n="nav.faq">FAQ</a>
+            <div class="mobile-auth">
+                <a href="/login" class="btn btn-outline" style="width: 100%; justify-content: center;"
+                    data-i18n="nav.login">Login</a>
+                <a href="/register" class="btn btn-primary" style="width: 100%; justify-content: center;"
+                    data-i18n="nav.start">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <canvas id="bg-canvas"></canvas>
+
+        <div class="hero-content">
+            <div class="beta-badge fade-in-section">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    class="badge-icon">
+                    <path d="M12 2v20" />
+                    <path d="M2 12h20" />
+                    <path d="M12 2l4 4" />
+                    <path d="M12 2l-4 4" />
+                </svg>
+                <span data-i18n="hero.badge">BETA - Early Access</span>
+            </div>
+
+            <h1 class="hero-title fade-in-section" data-i18n="hero.title" data-i18n-html>
+                Get Only <span class="gradient-text">Important News</span> from Twitter
+            </h1>
+
+            <p class="hero-subtitle fade-in-section" data-i18n="hero.subtitle">
+                Save time with AI-powered filtering. Catch only the tweets that matter to you instantly.
+            </p>
+
+            <div class="hero-cta fade-in-section">
+                <a href="/register" class="btn btn-primary btn-lg" data-i18n="hero.cta">
+                    Get Started - Free
+                </a>
+                <a href="#how-it-works" class="btn btn-secondary btn-lg" data-i18n="nav.howItWorks">
+                    How it Works
+                </a>
+            </div>
+
+            <div class="trust-badge fade-in-section"
+                style="margin-top: 24px; font-size: 0.9rem; color: var(--text-tertiary);">
+                <span data-i18n="hero.trust">No credit card required • Start in 2 minutes</span>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 13L12 18L17 13" />
+                <path d="M7 6L12 11L17 6" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <div class="social-proof">
+        <div class="container">
+            <div class="social-text">
+                <div class="social-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                    </svg>
+                    <span data-i18n="stats.response">Response Time</span>: <strong>2s</strong>
+                </div>
+                <div class="social-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path
+                            d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7V5.73C9.4 5.39 9 4.74 9 4a2 2 0 0 1 2-2z" />
+                    </svg>
+                    <span data-i18n="stats.aiPowered">AI-Powered</span>: <strong>Gemini 1.5</strong>
+                </div>
+                <div class="social-item">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    <span data-i18n="stats.users">Early Users</span>: <strong>500+</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features (Bento Grid) -->
+    <section id="features" class="section">
+        <div class="container">
+            <div class="section-header fade-in-section">
+                <h2 class="section-title" data-i18n="features.title" data-i18n-html>Why <span
+                        class="gradient-text">GistAI</span>?</h2>
+                <p class="section-subtitle" data-i18n="features.subtitle">Get maximum value from Twitter with modern AI
+                    technology</p>
+            </div>
+
+            <div class="bento-grid">
+                <!-- Large Card -->
+                <div class="bento-card bento-large fade-in-section">
+                    <div class="bento-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7V5.73C9.4 5.39 9 4.74 9 4a2 2 0 0 1 2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title" data-i18n="features.ai.title">AI-Powered Filtering</h3>
+                    <p class="bento-desc" data-i18n="features.ai.desc">Every tweet is analyzed with Google Gemini 1.5
+                        Flash. Only truly newsworthy content reaches you.</p>
+                </div>
+
+                <!-- Small Cards -->
+                <div class="bento-card fade-in-section">
+                    <div class="bento-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title" data-i18n="features.instant.title">Instant Notifications</h3>
+                    <p class="bento-desc" data-i18n="features.instant.desc">Important news reaches you via Telegram
+                        within 15 minutes.</p>
+                </div>
+
+                <div class="bento-card fade-in-section">
+                    <div class="bento-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                            <polyline points="10 9 9 9 8 9" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title" data-i18n="features.smart.title">Smart Summaries</h3>
+                    <p class="bento-desc" data-i18n="features.smart.desc">Long tweet threads summarized in 3 points.</p>
+                </div>
+
+                <div class="bento-card fade-in-section">
+                    <div class="bento-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title" data-i18n="features.category.title">Category Filtering</h3>
+                    <p class="bento-desc" data-i18n="features.category.desc">Tech, Finance, Politics - get only what
+                        interests you.</p>
+                </div>
+
+                <div class="bento-card fade-in-section">
+                    <div class="bento-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title" data-i18n="features.secure.title">Completely Secure</h3>
+                    <p class="bento-desc" data-i18n="features.secure.desc">Your data is encrypted, privacy is our
+                        priority.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="section">
+        <div class="container">
+            <div class="section-header fade-in-section">
+                <h2 class="section-title" data-i18n="howItWorks.title">How It Works?</h2>
+                <p class="section-subtitle" data-i18n="howItWorks.subtitle">Get started in 3 simple steps</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item fade-in-section">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="howItWorks.step1.title">Sign Up</h3>
+                        <p data-i18n="howItWorks.step1.desc">Create a free account with email.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-section">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="howItWorks.step2.title">Add Twitter Accounts</h3>
+                        <p data-i18n="howItWorks.step2.desc">Add accounts you want to follow from dashboard.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in-section">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content">
+                        <h3 data-i18n="howItWorks.step3.title">Connect Telegram</h3>
+                        <p data-i18n="howItWorks.step3.desc">Start the bot, enter the code. Receive news!</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-cta" style="margin-top: 40px;">
+                <a href="/register" class="btn btn-primary" data-i18n="howItWorks.cta">Start Now →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section">
+        <div class="container">
+            <div class="section-header fade-in-section">
+                <h2 class="section-title" data-i18n="pricing.title" data-i18n-html>Simple <span
+                        class="gradient-text">Pricing</span></h2>
+                <p class="section-subtitle" data-i18n="pricing.subtitle">Start small, upgrade as you grow</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Free -->
+                <div class="pricing-card fade-in-section">
+                    <h3 data-i18n="pricing.free.name">Free</h3>
+                    <p data-i18n="pricing.free.desc">Perfect for getting started</p>
+                    <div class="price">
+                        <span data-i18n="pricing.free.currency">$</span><span data-i18n="pricing.free.price">0</span>
+                        <span data-i18n="pricing.free.period">/month</span>
+                    </div>
+                    <a href="/register" class="btn btn-outline" style="width: 100%; justify-content: center;"
+                        data-i18n="pricing.free.cta">Start Free</a>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span>2 Twitter accounts</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span>AI filtering</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span>Telegram notifications</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Premium -->
+                <div class="pricing-card featured fade-in-section">
+                    <div class="pricing-badge" data-i18n="pricing.premium.badge">Most Popular</div>
+                    <h3 data-i18n="pricing.premium.name">Premium</h3>
+                    <p data-i18n="pricing.premium.desc">Full power, unlimited access</p>
+                    <div class="price">
+                        <span data-i18n="pricing.premium.currency">$</span><span
+                            data-i18n="pricing.premium.price">19</span>
+                        <span data-i18n="pricing.premium.period">/month</span>
+                    </div>
+                    <a href="/register" class="btn btn-primary" style="width: 100%; justify-content: center;"
+                        data-i18n="pricing.premium.cta">Go Premium</a>
+
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span><strong>Unlimited</strong> Twitter accounts</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span>Advanced AI analysis</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span>Priority notifications</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg class="check" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="3">
+                                <polyline points="20 6 9 17 4 12" />
+                            </svg>
+                            <span>Premium support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 24px; color: var(--text-tertiary); font-size: 0.9rem;"
+                data-i18n="pricing.note">
+                No credit card required • Cancel anytime
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+        <div class="container">
+            <div class="section-header fade-in-section">
+                <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-grid" id="faq-list">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-box fade-in-section">
+                <h2 class="section-title" data-i18n="cta.title">Break Free from News Noise</h2>
+                <p class="section-subtitle" style="margin-bottom: 32px;" data-i18n="cta.subtitle">
+                    Setup in minutes and start receiving your first news.
+                </p>
+                <a href="/register" class="btn btn-primary btn-lg" data-i18n="cta.button">
+                    Create Free Account
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback & Support -->
+    <section id="support" class="section" style="padding-top: 0;">
+        <div class="container">
+            <div class="section-header fade-in-section">
+                <h2 class="section-title" data-i18n="support.title" data-i18n-html>Need <span
+                        class="gradient-text">Help</span>?</h2>
+            </div>
+
+            <div class="bento-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                <div class="bento-card fade-in-section">
+                    <div class="bento-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title" data-i18n="support.telegram.title">Telegram Bot</h3>
+                    <p class="bento-desc" data-i18n="support.telegram.desc">Get instant support through our Telegram
+                        bot.</p>
+                    <a href="https://t.me/GistAI_bot" target="_blank" class="btn btn-outline"
+                        style="margin-top: 16px; width: 100%; justify-content: center;">Chat Now</a>
+                </div>
+
+                <div class="bento-card fade-in-section">
+                    <div class="bento-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+                        </svg>
+                    </div>
+                    <h3 class="bento-title" data-i18n="support.feedback.title">Send Feedback</h3>
+                    <p class="bento-desc" data-i18n="support.feedback.desc">Have suggestions? We'd love to hear from
+                        you!</p>
+                    <a href="https://tally.so/r/Zj27Zy" target="_blank" class="btn btn-outline"
+                        style="margin-top: 16px; width: 100%; justify-content: center;"
+                        data-i18n="support.feedback.button">Open Feedback Form</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="logo" style="font-size: 1rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7V5.73C9.4 5.39 9 4.74 9 4a2 2 0 0 1 2-2z" />
+                    <path d="M8 11h.01" />
+                    <path d="M16 11h.01" />
+                    <path d="M9 16c.5 1 2 1 2.5 1s2-1 2.5-1" />
+                </svg>
+                GistAI
+            </div>
+
+            <div class="footer-links">
+                <a href="/login" class="footer-link">Login</a>
+                <a href="/register" class="footer-link">Register</a>
+                <a href="/terms" class="footer-link">Terms</a>
+                <a href="/privacy" class="footer-link">Privacy</a>
+            </div>
+
+            <div style="color: var(--text-tertiary); font-size: 0.85rem;" data-i18n="footer.copyright">
+                © 2026 GistAI. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/js/i18n.js"></script>
+    <script src="/js/landing.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - GistAI</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/css/landing.css">
+    <style>
+        .legal-container {
+            max-width: 800px;
+            margin: 80px auto;
+            padding: 40px 20px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .legal-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .legal-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--primary-400), var(--primary-500));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .legal-updated {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .legal-content {
+            line-height: 1.8;
+        }
+
+        .legal-content h2 {
+            font-size: 1.75rem;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .legal-content h3 {
+            font-size: 1.25rem;
+            margin-top: 24px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .legal-content p {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .legal-content ul {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        .legal-content li {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--primary-400);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="legal-container">
+        <a href="/" class="back-link">← <span id="backHomeText">Back to Home</span></a>
+
+        <div class="legal-header">
+            <h1 id="termsTitle">Terms of Service</h1>
+            <p class="legal-updated">
+                <span id="lastUpdatedText">Last Updated</span>: January 30, 2026
+            </p>
+        </div>
+
+        <div class="legal-content" id="termsContent">
+            <!-- Content will be loaded by JavaScript -->
+        </div>
+    </div>
+
+    <script src="/js/i18n.js"></script>
+    <script>
+        const termsContent = {
+            en: `
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using GistAI ("the Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use the Service.</p>
+
+                <h2>2. Description of Service</h2>
+                <p>GistAI is an AI-powered news filtering and summarization platform that aggregates content from Twitter/X and delivers personalized news summaries via Telegram and web dashboard. The Service uses artificial intelligence to analyze and filter content based on user preferences.</p>
+
+                <h2>3. User Accounts</h2>
+                <h3>3.1 Registration</h3>
+                <p>You may register for an account using email/password, Google OAuth, or Telegram authentication. You are responsible for maintaining the confidentiality of your account credentials.</p>
+
+                <h3>3.2 Eligibility</h3>
+                <p>You must be at least 13 years old to use this Service. By using the Service, you represent that you meet this age requirement.</p>
+
+                <h2>4. Acceptable Use</h2>
+                <p>You agree NOT to:</p>
+                <ul>
+                    <li>Use the Service for any illegal or unauthorized purpose</li>
+                    <li>Attempt to gain unauthorized access to the Service or its related systems</li>
+                    <li>Interfere with or disrupt the Service or servers</li>
+                    <li>Use automated means to access the Service without our permission</li>
+                    <li>Violate any applicable laws or regulations</li>
+                </ul>
+
+                <h2>5. Subscription and Payment</h2>
+                <h3>5.1 Plans</h3>
+                <p>GistAI offers both free and premium subscription plans. Free plans are limited to 2 Twitter accounts. Premium plans offer unlimited accounts and advanced features for $19/month.</p>
+
+                <h3>5.2 Payment Processing</h3>
+                <p>All payments are processed through Gumroad, a secure third-party payment processor. We do not store your credit card information. Subscriptions renew automatically monthly unless cancelled.</p>
+
+                <h3>5.3 Refunds</h3>
+                <p>Refunds are handled on a case-by-case basis. Please contact support within 7 days of your purchase for refund requests.</p>
+
+                <h2>6. Content and Intellectual Property</h2>
+                <p>All content, features, and functionality of the Service are owned by GistAI and are protected by international copyright, trademark, and other intellectual property laws.</p>
+                <p>News content is aggregated from Twitter/X and other public sources. We do not claim ownership of this content. AI-generated summaries are provided as-is for informational purposes.</p>
+
+                <h2>7. Limitation of Liability</h2>
+                <p>THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND. GistAI SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF YOUR USE OF THE SERVICE.</p>
+
+                <h2>8. Termination</h2>
+                <p>We reserve the right to terminate or suspend your account at any time without prior notice for conduct that we believe violates these Terms of Service or is harmful to other users, us, or third parties.</p>
+
+                <h2>9. Changes to Terms</h2>
+                <p>We reserve the right to modify these Terms of Service at any time. We will notify users of any material changes via email or through the Service. Continued use of the Service after changes constitutes acceptance of the new terms.</p>
+
+                <h2>10. Contact Information</h2>
+                <p>For questions about these Terms of Service, please contact us at: support@gistai.net</p>
+            `,
+            tr: `
+                <h2>1. Koşulların Kabulü</h2>
+                <p>GistAI'a ("Hizmet") erişerek ve kullanarak, bu sözleşmenin hüküm ve koşullarını kabul etmiş ve bağlı olmayı kabul etmiş olursunuz. Bu Kullanım Koşullarını kabul etmiyorsanız, lütfen Hizmeti kullanmayın.</p>
+
+                <h2>2. Hizmet Açıklaması</h2>
+                <p>GistAI, Twitter/X'ten içerik toplayan ve Telegram ve web panosu aracılığıyla kişiselleştirilmiş haber özetleri sunan yapay zeka destekli bir haber filtreleme ve özet platformudur. Hizmet, kullanıcı tercihlerine göre içeriği analiz etmek ve filtrelemek için yapay zeka kullanır.</p>
+
+                <h2>3. Kullanıcı Hesapları</h2>
+                <h3>3.1 Kayıt</h3>
+                <p>E-posta/şifre, Google OAuth veya Telegram kimlik doğrulaması kullanarak hesap açabilirsiniz. Hesap kimlik bilgilerinizin gizliliğini korumaktan siz sorumlusunuz.</p>
+
+                <h3>3.2 Uygunluk</h3>
+                <p>Bu Hizmeti kullanmak için en az 13 yaşında olmalısınız. Hizmeti kullanarak, bu yaş gereksinimini karşıladığınızı beyan edersiniz.</p>
+
+                <h2>4. Kabul Edilebilir Kullanım</h2>
+                <p>Şunları YAPMAMAYI kabul edersiniz:</p>
+                <ul>
+                    <li>Hizmeti herhangi bir yasadışı veya yetkisiz amaç için kullanmak</li>
+                    <li>Hizmete veya ilgili sistemlere yetkisiz erişim sağlamaya çalışmak</li>
+                    <li>Hizmeti veya sunucuları engellemek veya bozmak</li>
+                    <li>İznimiz olmadan Hizmete otomatik araçlarla erişmek</li>
+                    <li>Geçerli yasaları veya yönetmelikleri ihlal etmek</li>
+                </ul>
+
+                <h2>5. Abonelik ve Ödeme</h2>
+                <h3>5.1 Planlar</h3>
+                <p>GistAI hem ücretsiz hem de premium abonelik planları sunar. Ücretsiz planlar 2 Twitter hesabıyla sınırlıdır. Premium planlar, sınırsız hesap ve gelişmiş özellikler için aylık $19 sunar.</p>
+
+                <h3>5.2 Ödeme İşleme</h3>
+                <p>Tüm ödemeler güvenli bir üçüncü taraf ödeme işlemcisi olan Gumroad aracılığıyla işlenir. Kredi kartı bilgilerinizi saklamıyoruz. İptal edilmedikçe abonelikler otomatik olarak aylık yenilenir.</p>
+
+                <h3>5.3 İadeler</h3>
+                <p>İadeler vaka bazında değerlendirilir. İade talepleri için lütfen satın alma işleminizden sonraki 7 gün içinde destek ile iletişime geçin.</p>
+
+                <h2>6. İçerik ve Fikri Mülkiyet</h2>
+                <p>Hizmetin tüm içeriği, özellikleri ve işlevselliği GistAI'a aittir ve uluslararası telif hakkı, ticari marka ve diğer fikri mülkiyet yasaları ile korunmaktadır.</p>
+                <p>Haber içeriği Twitter/X ve diğer halka açık kaynaklardan toplanır. Bu içeriğin mülkiyetini iddia etmiyoruz. AI tarafından oluşturulan özetler bilgi amaçlı olduğu gibi sağlanır.</p>
+
+                <h2>7. Sorumluluk Sınırlaması</h2>
+                <p>HİZMET HİÇBİR GARANTİ OLMAKSIZIN "OLDUĞU GİBİ" SAĞLANIR. GistAI, HİZMETİ KULLANIMI NEDENİYLE ORTAYA ÇIKAN DOLAYLI, ARIZİ, ÖZEL, SONUÇ VEYA CEZAİ ZARARLARDAN SORUMLU OLMAYACAKTIR.</p>
+
+                <h2>8. Sonlandırma</h2>
+                <p>Bu Kullanım Koşullarını ihlal ettiğine inandığımız veya diğer kullanıcılara, bize veya üçüncü taraflara zararlı olduğunu düşündüğümüz davranışlar için önceden haber vermeksizin hesabınızı dilediğimiz zaman sonlandırma veya askıya alma hakkını saklı tutarız.</p>
+
+                <h2>9. Koşullardaki Değişiklikler</h2>
+                <p>Bu Kullanım Koşullarını dilediğimiz zaman değiştirme hakkını saklı tutarız. Önemli değişiklikler hakkında kullanıcıları e-posta veya Hizmet aracılığıyla bilgilendireceğiz. Değişikliklerden sonra Hizmeti kullanmaya devam etmek, yeni koşulların kabul edildiği anlamına gelir.</p>
+
+                <h2>10. İletişim Bilgileri</h2>
+                <p>Bu Kullanım Koşulları hakkında sorularınız için lütfen bizimle support@gistai.net adresinden iletişime geçin.</p>
+            `
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('language') || 'en';
+            updateContent(savedLang);
+        });
+
+        function updateContent(lang) {
+            // Update title and header
+            document.getElementById('backHomeText').textContent = lang === 'tr' ? 'Ana Sayfaya Dön' : 'Back to Home';
+            document.getElementById('termsTitle').textContent = lang === 'tr' ? 'Kullanım Koşulları' : 'Terms of Service';
+            document.getElementById('lastUpdatedText').textContent = lang === 'tr' ? 'Son Güncelleme' : 'Last Updated';
+
+            // Update content
+            document.getElementById('termsContent').innerHTML = termsContent[lang] || termsContent.en;
+        }
+
+        // Listen for language changes
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'language') {
+                updateContent(e.newValue);
+            }
+        });
+    </script>
+</body>
+
+</html>
