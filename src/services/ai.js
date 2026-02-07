@@ -1,8 +1,10 @@
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+const { GoogleGenerativeAI } = require("@google/genai");
 
-// Initialize Gemini with stable model
+// Initialize Gemini with cost-optimized model (SDK uses v1beta by default)
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+const model = genAI.getGenerativeModel({
+    model: "gemini-1.5-flash-8b"
+});
 
 // Rate limit tracking - increased for stability
 let lastRequestTime = 0;
