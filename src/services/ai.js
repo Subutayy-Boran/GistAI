@@ -1,10 +1,10 @@
-const { GoogleGenerativeAI } = require("@google/genai");
+const { GoogleGenAI } = require("@google/genai");
 
-// Initialize Gemini with cost-optimized model (SDK uses v1beta by default)
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || 'dummy_key');
-const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash-8b"
-});
+// Initialize Gemini SDK
+const aiClient = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || 'dummy_key' });
+
+// Model configuration
+const MODEL_NAME = "gemini-1.5-flash-8b";
 
 // Rate limit tracking - increased for stability
 let lastRequestTime = 0;
@@ -63,9 +63,12 @@ EXAMPLES:
     // Retry loop with exponential backoff
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
         try {
-            const result = await model.generateContent(prompt);
-            const response = await result.response;
-            let text = response.text();
+            const result = await aiClient.models.generateContent({
+                model: MODEL_NAME,
+                contents: prompt
+            });
+
+            let text = result.text;
 
             // Markdown code block temizliği
             text = text.replace(/```json/g, '').replace(/```/g, '').trim();
