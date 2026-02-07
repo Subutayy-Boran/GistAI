@@ -526,11 +526,17 @@ let pendingRemoveSourceId = null;
 
 function removeSubscription(sourceId) {
     pendingRemoveSourceId = sourceId;
-    document.getElementById('removeSubscriptionModal').style.display = 'flex';
+    const modal = document.getElementById('removeSubscriptionModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
 }
 
 function hideRemoveSubscriptionModal() {
-    document.getElementById('removeSubscriptionModal').style.display = 'none';
+    const modal = document.getElementById('removeSubscriptionModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
     pendingRemoveSourceId = null;
 }
 
@@ -607,13 +613,25 @@ function handleLogout() {
 }
 
 function showDeleteAccountModal() {
-    document.getElementById('deleteAccountModal').style.display = 'flex';
-    document.getElementById('deleteConfirmInput').value = '';
+    const modal = document.getElementById('deleteAccountModal');
+    if (modal) {
+        modal.classList.add('active');
+    }
+    const input = document.getElementById('deleteConfirmInput');
+    if (input) {
+        input.value = '';
+    }
 }
 
 function hideDeleteAccountModal() {
-    document.getElementById('deleteAccountModal').style.display = 'none';
-    document.getElementById('deleteConfirmInput').value = '';
+    const modal = document.getElementById('deleteAccountModal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
+    const input = document.getElementById('deleteConfirmInput');
+    if (input) {
+        input.value = '';
+    }
 }
 
 async function confirmDeleteAccount() {
