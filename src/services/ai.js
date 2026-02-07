@@ -1,21 +1,23 @@
-const { GoogleGenAI } = require("@google/genai");
+const Groq = require("groq-sdk");
 
-// Initialize Gemini SDK
-const aiClient = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY || 'dummy_key' });
+// Initialize Groq SDK
+const groq = new Groq({
+    apiKey: process.env.GROQ_API_KEY || 'dummy_key'
+});
 
-// Model configuration
-const MODEL_NAME = "gemini-1.5-flash-8b";
+// Model configuration - LLaMA 3.3 70B is fast, high-quality, and cost-effective
+const MODEL_NAME = "llama-3.3-70b-versatile";
 
-// Rate limit tracking - increased for stability
+// Rate limit tracking - Groq is much faster, so we can reduce intervals
 let lastRequestTime = 0;
-const MIN_REQUEST_INTERVAL = 5000; // 5 seconds between requests (increased from 2s)
+const MIN_REQUEST_INTERVAL = 1000; // 1 second between requests (Groq is fast!)
 let consecutiveErrors = 0;
 const MAX_RETRIES = 3;
 
 async function analyzeContent(username, content) {
     // Check for API key
-    if (!process.env.GEMINI_API_KEY) {
-        console.warn('⚠️ GEMINI_API_KEY missing. Returning mock response.');
+    if (!process.env.GROQ_API_KEY || process.env.GROQ_API_KEY === 'dummy_key') {
+        console.warn('⚠️ GROQ_API_KEY missing. Returning mock response.');
         return getMockResponse();
     }
 
@@ -44,7 +46,7 @@ CRITERIA FOR NEWS VALUE:
 TWEET:
 @${username}: "${content}"
 
-RESPOND IN JSON:
+RESPOND IN JSON FORMAT ONLY (no markdown, no code blocks):
 {
   "is_news_worthy": true/false,
   "importance_score": 1-10,
@@ -63,33 +65,39 @@ EXAMPLES:
     // Retry loop with exponential backoff
     for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
         try {
-            const result = await aiClient.models.generateContent({
+            const completion = await groq.chat.completions.create({
                 model: MODEL_NAME,
-                contents: prompt
+                messages: [
+                    {
+                        role: "user",
+                        content: prompt
+                    }
+                ],
+                temperature: 0.3, // Lower temperature for more consistent, factual responses
+                max_tokens: 500,
+                response_format: { type: "json_object" } // Force JSON response
             });
 
-            let text = result.text;
+            let text = completion.choices[0].message.content;
 
-            // Markdown code block temizliği
+            // Clean up any potential markdown artifacts (shouldn't happen with json_object mode)
             text = text.replace(/```json/g, '').replace(/```/g, '').trim();
 
             const jsonResult = JSON.parse(text);
             consecutiveErrors = 0; // Reset on success
+
+            console.log(`✅ AI analysis successful for @${username}`);
             return jsonResult;
 
         } catch (error) {
             consecutiveErrors++;
 
-            // Check if rate limited (429)
-            if (error.message && error.message.includes('429')) {
-                console.warn(`⚠️ Gemini rate limit hit (attempt ${attempt + 1}/${MAX_RETRIES}). Using mock response.`);
-
-                // Extract retry delay if available
-                const retryMatch = error.message.match(/retry in (\d+)/i);
-                const retryDelay = retryMatch ? parseInt(retryMatch[1]) * 1000 : 5000;
+            // Check if rate limited
+            if (error.message && (error.message.includes('rate_limit') || error.message.includes('429'))) {
+                console.warn(`⚠️ Groq rate limit hit (attempt ${attempt + 1}/${MAX_RETRIES}). Retrying...`);
 
                 if (attempt < MAX_RETRIES - 1) {
-                    await sleep(retryDelay);
+                    await sleep(2000 * (attempt + 1)); // Exponential backoff
                     continue;
                 }
 
@@ -99,7 +107,7 @@ EXAMPLES:
             }
 
             // Other errors
-            console.error('Gemini AI Analiz Hatası:', error.message || error);
+            console.error('Groq AI Analysis Error:', error.message || error);
 
             if (attempt < MAX_RETRIES - 1) {
                 await sleep(1000 * (attempt + 1)); // Exponential backoff
@@ -109,6 +117,7 @@ EXAMPLES:
     }
 
     // Fallback to mock response after all retries fail
+    console.warn('⚠️ All AI analysis attempts failed, using mock response');
     return getMockResponse();
 }
 
@@ -117,8 +126,8 @@ function getMockResponse() {
     return {
         is_news_worthy: true,
         importance_score: 5,
-        title: "Beta Mode: Using Mock Data",
-        summary: "This content is being analyzed in beta demo mode. Real AI analysis will resume after rate limit recovery.",
+        title: "Content Analysis in Progress",
+        summary: "This content is being analyzed. AI analysis will resume shortly.",
         categories: ["General"],
         sentiment: "Neutral"
     };

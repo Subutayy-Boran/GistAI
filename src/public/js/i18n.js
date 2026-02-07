@@ -183,7 +183,7 @@ const translations = {
             subtitle: 'Get maximum value from Twitter with modern AI technology',
             ai: {
                 title: 'AI-Powered Filtering',
-                desc: 'Every tweet is analyzed with Google Gemini 1.5 Flash. Only truly newsworthy content reaches you. Automatically removes noise.',
+                desc: 'Every tweet is analyzed with Groq AI powered by LLaMA 3.3 70B. Only truly newsworthy content reaches you. Automatically removes noise.',
                 tags: ['GPT-4 Level', 'Real-time', '99% Accuracy']
             },
             instant: {
@@ -501,7 +501,7 @@ const translations = {
             subtitle: 'Modern AI teknolojisiyle Twitter\'dan maksimum değer alın',
             ai: {
                 title: 'AI-Powered Filtreleme',
-                desc: 'Google Gemini 1.5 Flash ile her tweet analiz edilir. Sadece gerçekten haber değeri taşıyan içerikler size ulaşır. Gürültüyü otomatik kaldırır.',
+                desc: 'Groq AI LLaMA 3.3 70B ile her tweet analiz edilir. Sadece gerçekten haber değeri taşıyan içerikler size ulaşır. Gürültüyü otomatik kaldırır.',
                 tags: ['GPT-4 Level', 'Real-time', '99% Accuracy']
             },
             instant: {
@@ -770,7 +770,7 @@ const translations = {
             subtitle: 'Obtén el máximo valor de Twitter con tecnología moderna de IA',
             ai: {
                 title: 'Filtrado Impulsado por IA',
-                desc: 'Cada tweet se analiza con Google Gemini 1.5 Flash. Solo el contenido verdaderamente noticioso te llega. Elimina automáticamente el ruido.',
+                desc: 'Cada tweet se analiza con Groq AI impulsado por LLaMA 3.3 70B. Solo el contenido verdaderamente noticioso te llega. Elimina automáticamente el ruido.',
                 tags: ['Nivel GPT-4', 'Tiempo real', '99% Precisión']
             },
             instant: {
@@ -1039,7 +1039,7 @@ const translations = {
             subtitle: 'Hole das Maximum aus Twitter mit moderner KI-Technologie',
             ai: {
                 title: 'KI-gesteuerte Filterung',
-                desc: 'Jeder Tweet wird mit Google Gemini 1.5 Flash analysiert. Nur wirklich nachrichtenwertige Inhalte erreichen dich. Entfernt automatisch Lärm.',
+                desc: 'Jeder Tweet wird mit Groq AI angetrieben von LLaMA 3.3 70B analysiert. Nur wirklich nachrichtenwertige Inhalte erreichen dich. Entfernt automatisch Lärm.',
                 tags: ['GPT-4 Niveau', 'Echtzeit', '99% Genauigkeit']
             },
             instant: {
@@ -1308,7 +1308,7 @@ const translations = {
             subtitle: 'Tirez le maximum de Twitter avec la technologie IA moderne',
             ai: {
                 title: 'Filtrage Alimenté par IA',
-                desc: 'Chaque tweet est analysé avec Google Gemini 1.5 Flash. Seul le contenu vraiment digne d\'intérêt vous parvient. Supprime automatiquement le bruit.',
+                desc: 'Chaque tweet est analysé avec Groq AI alimenté par LLaMA 3.3 70B. Seul le contenu vraiment digne d\'intérêt vous parvient. Supprime automatiquement le bruit.',
                 tags: ['Niveau GPT-4', 'Temps réel', '99% Précision']
             },
             instant: {
