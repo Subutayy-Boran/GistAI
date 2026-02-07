@@ -898,6 +898,10 @@ const translations = {
                 title: 'Escríbenos',
                 desc: 'Para consultas comerciales o solicitudes de soporte detalladas.'
             },
+            email: {
+                title: 'Envíanos un correo',
+                desc: 'Para consultas comerciales o solicitudes de soporte detalladas.'
+            },
             response: 'Tiempo de respuesta promedio: < 24 horas'
         },
         footer: {
@@ -1162,6 +1166,10 @@ const translations = {
                 title: 'Feedback Senden',
                 desc: 'Hast du Vorschläge oder einen Fehler gefunden? Wir würden gerne von dir hören!',
                 button: 'Feedback-Formular Öffnen'
+            },
+            email: {
+                title: 'E-Mail an uns',
+                desc: 'Für geschäftliche Anfragen oder detaillierte Support-Anfragen.'
             },
             email: {
                 title: 'E-Mail an uns',
