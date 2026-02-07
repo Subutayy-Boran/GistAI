@@ -407,7 +407,7 @@ async function deleteAccount(req, res) {
         await query('DELETE FROM subscriptions WHERE user_id = $1', [userId]);
 
         // Delete telegram connection code if exists
-        await query('DELETE FROM telegram_pending WHERE user_id = $1', [userId]);
+        await query('DELETE FROM telegram_connect_codes WHERE user_id = $1', [userId]);
 
         // Delete user account
         await query('DELETE FROM profiles WHERE id = $1', [userId]);
