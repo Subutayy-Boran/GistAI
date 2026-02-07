@@ -28,6 +28,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
             }
         }));
     console.log('✅ Google Auth Configured');
+} else {
     console.warn('⚠️ Google Auth Skipped: Missing GOOGLE_CLIENT_ID/SECRET');
 }
 
